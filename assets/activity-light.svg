@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="900" height="314" viewBox="0 0 900 314" role="img" aria-labelledby="title desc">
 <title id="title">TrinhQuocDat542005 — GitHub activity</title>
-<desc id="desc">488 contributions in the past year. Current streak 0 days. Longest streak 9 days. Calendar through 2026-11-01.</desc>
+<desc id="desc">488 contributions in the past year. 76 active days. Longest streak 9 days. Calendar through 2026-11-01.</desc>
 <rect x="0.5" y="0.5" width="899" height="313" rx="12" fill="#ffffff" stroke="#d1d9e0"/>
 <g font-family="-apple-system, BlinkMacSystemFont, Segoe UI, Arial, sans-serif">
 <rect x="18" y="18" width="282" height="106" rx="8" fill="#f6f8fa"/>
@@ -8,9 +8,9 @@
 <text x="36" y="79" font-size="14" font-weight="600" fill="#1f2328">Contributions</text>
 <text x="36" y="101" font-size="11" fill="#59636e">past year</text>
 <rect x="309" y="18" width="282" height="106" rx="8" fill="#f6f8fa"/>
-<text x="327" y="53" font-size="28" font-weight="700" fill="#f0883e">0</text>
-<text x="327" y="79" font-size="14" font-weight="600" fill="#1f2328">Current streak</text>
-<text x="327" y="101" font-size="11" fill="#59636e">days</text>
+<text x="327" y="53" font-size="28" font-weight="700" fill="#f0883e">76</text>
+<text x="327" y="79" font-size="14" font-weight="600" fill="#1f2328">Active days</text>
+<text x="327" y="101" font-size="11" fill="#59636e">past year</text>
 <rect x="600" y="18" width="282" height="106" rx="8" fill="#f6f8fa"/>
 <text x="618" y="53" font-size="28" font-weight="700" fill="#0969da">9</text>
 <text x="618" y="79" font-size="14" font-weight="600" fill="#1f2328">Longest streak</text>

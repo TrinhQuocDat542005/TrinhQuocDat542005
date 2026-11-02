@@ -84,32 +84,23 @@ def summarize(calendar: dict) -> tuple[list[dict], int, int]:
             run = 0
         longest = max(longest, run)
         previous = current_date
-    # An unfinished final day does not break yesterday's streak.
-    recent = days[:-1] if days[-1]["contributionCount"] == 0 else days
-    current = 0
-    expected = date.fromisoformat(recent[-1]["date"]) if recent else None
-    for day in reversed(recent):
-        current_date = date.fromisoformat(day["date"])
-        if not day["contributionCount"] or current_date != expected:
-            break
-        current += 1
-        expected -= timedelta(days=1)
-    return days, current, longest
+    active = sum(1 for day in days if day["contributionCount"])
+    return days, active, longest
 
 
 def render(calendar: dict, login: str, theme: str) -> str:
-    days, current, longest = summarize(calendar)
+    days, active, longest = summarize(calendar)
     p = PALETTES[theme]
     latest = days[-1]["date"]
     metrics = [
         (f'{calendar["totalContributions"]:,}', "Contributions", "past year", p["accent"]),
-        (str(current), "Current streak", "days", "#f0883e"),
+        (str(active), "Active days", "past year", "#f0883e"),
         (str(longest), "Longest streak", "days in the past year", p["accent"]),
     ]
     svg = [
         '<svg xmlns="http://www.w3.org/2000/svg" width="900" height="314" viewBox="0 0 900 314" role="img" aria-labelledby="title desc">',
         f'<title id="title">{escape(login)} — GitHub activity</title>',
-        f'<desc id="desc">{calendar["totalContributions"]} contributions in the past year. Current streak {current} days. Longest streak {longest} days. Calendar through {latest}.</desc>',
+        f'<desc id="desc">{calendar["totalContributions"]} contributions in the past year. {active} active days. Longest streak {longest} days. Calendar through {latest}.</desc>',
         f'<rect x="0.5" y="0.5" width="899" height="313" rx="12" fill="{p["background"]}" stroke="{p["border"]}"/>',
         '<g font-family="-apple-system, BlinkMacSystemFont, Segoe UI, Arial, sans-serif">',
     ]
@@ -160,8 +151,8 @@ def main() -> None:
     assets.mkdir(exist_ok=True)
     for theme in PALETTES:
         (assets / f"activity-{theme}.svg").write_text(render(calendar, login, theme), encoding="utf-8")
-    _, current, longest = summarize(calendar)
-    print(f'Generated both themes: {calendar["totalContributions"]} public contributions, current streak {current}, longest streak {longest}.')
+    _, active, longest = summarize(calendar)
+    print(f'Generated both themes: {calendar["totalContributions"]} public contributions, {active} active days, longest streak {longest}.')
 
 
 if __name__ == "__main__":
